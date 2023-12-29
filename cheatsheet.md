@@ -1,8 +1,12 @@
 
 # Cheetsheet
+
+## initiate go module
+`initialize a Go module`
+
 ## Library/ Dependancy config
 
-### Config `CompleDaemon`
+### Config `CompileDaemon`
 
 Auto-restart Go program on changes by ComplieDaemon
 
