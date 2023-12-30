@@ -10,6 +10,6 @@ import (
 func LoadEnvVarialbles() {
 	err := godotenv.Load()
 	if err != nil {
-		log.Fatal("Error in loading .env file")
+		log.Fatalf("Error loading .env file: %v", err)
 	}
 }
