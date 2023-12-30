@@ -136,6 +136,19 @@ func init() {
         ```
 
 ### config `Postgres`
+
+Create a PostgreSql database in VM
+
+```bash
+    CREATE DATABASE 'databasename';
+    CREATE USER 'username' WITH ENCRYPTED PASSWORD 'password';
+    ALTER ROLE 'username' SET client_encoding TO 'utf8';
+    ALTER ROLE 'username' SET default_transaction_isolation TO 'read committed';
+    ALTER ROLE 'username' SET timezone TO 'UTC';
+    GRANT ALL PRIVILEGES ON DATABASE 'databasename' TO 'username';
+```
+
+
 1. create a file `database.go` inside `initializers` 
 
 ```go
@@ -224,7 +237,11 @@ __Note :__ for table and coloumns use `SnakeCase`
         }
     ```
 
-3. run command `migrate/migrate.go`
+3. run command `migrate/migrate.go` 
+    <p style="color: red; font-weight: bold;">Remember: run ☝in the root directory</p>
+    
+    [SuccessfulDatabaseMigration](https://drive.google.com/file/d/1Vy1Vfgt1up0c3XEYSbpoI-7FMGGrVPdb/view?usp=drive_link)
+
 
 4. check using __[Table Plus](https://tableplus.com/download)__ software
 - copy ElephanSql url
