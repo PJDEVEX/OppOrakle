@@ -1,18 +1,51 @@
 
 # Cheetsheet
 
+
+
+Initialize go module
+
+
+
 ## initiate go module
-`initialize a Go module`
+
+As Go modules enabled (GO111MODULE=on), 
+
+cd /path/to/your/project
+
+`go mod init github.com/yourusername/yourproject`
+
+e.g.: `go mod init github.com/PJDEVEX/OppOrakle`
+
 
 ## Library/ Dependancy config
 
+```bash
+go get \
+> github.com/gin-gonic/gin \
+> github.com/golang-jwt/jwt/v4 \
+> golang.org/x/crypto \
+> gorm.io/driver/postgres \
+> gorm.io/gorm
+```
+
 ### Config `CompileDaemon`
+
+`go get -u github.com/githubnemo/CompileDaemon`
+
+install - `go install github.com/githubnemo/CompileDaemon`
 
 Auto-restart Go program on changes by ComplieDaemon
 
 `$ CompileDaemon -command="./<project_name>"`
 
-### Config `Gin`
+if the project is not in system's `PATH`, use full path,
+
+`/home/pjlinux/go/bin/CompileDaemon -command="./OppOrakle"`
+
+### [Config `Gin`](https://gin-gonic.com/docs/quickstart/)
+
+
 
  ```go
  package main
@@ -62,29 +95,44 @@ func init() {
 
 
         ```go
-        package main
+            package initializers
 
-        import (
-            "github.com/joho/godotenv"
-            "log"
-            "os"
-        )
+            import (
+                "log"
 
-        func init() {
-        err := godotenv.Load()
-        if err != nil {
-            log.Fatal("Error loading .env file")
-        }
-        }
+                "github.com/joho/godotenv"
+            )
+
+            // Load env variables from .env
+            func LoadEnvVarialbles() {
+                err := godotenv.Load()
+                if err != nil {
+                    log.Fatal("Error in loading .env file")
+                }
+            }
+
 
         ```
 
     - In `main.go`, paste below insde init function
 
         ```go
-        func init() {
-            initializers.LoadEnvVaraibles()
-        }
+                    func init() {
+                initializers.LoadEnvVarialbles()
+            }
+
+            func main() {
+                // Gin router
+                r := gin.Default()
+                // Route paths
+                r.GET("/", func(c *gin.Context) {
+                    c.JSON(200, gin.H{
+                        "message": "pong",
+                    })
+                })
+                // Set local port
+                r.Run(":" + os.Getenv("PORT"))
+            }
         ```
 
 ### config `Postgres`
@@ -94,23 +142,35 @@ func init() {
 package initializers
 
 import (
-  "gorm.io/driver/postgres"
-  "gorm.io/gorm"
+	"log"
+	"os"
+
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
 )
 
 var DB *gorm.DB
 
-func ConnectToDB () {
-    var err error
-    dsn := "host=localhost user=gorm password=gorm dbname=gorm port=9920 sslmode=disable TimeZone=Asia/Shanghai"
-    DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
+// Connecting to the DB
+func ConnectToDB() {
+	var err error
+	// Retrieve the DB from env veriables.
+	dsn := os.Getenv("VMDATABASE_URL")
+ 	// Trying to open a conncection to the DB.
+	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{}) 
+    // it is "=", NOT ":="
+    // Use package-level DB variable
 
-    if err != nil {
-        log.Fatalf("Fail to connect to database: %v", err)
-        return
-    }
-    log.PrintIn("Connected to the database successfully")
+	if err != nil {
+		// log error
+		log.Printf("Fail to connect to database: %v", err)
+		return
+	}
+	// log success
+	log.Println("Connected to the database successfully")
+
 }
+
 ```
 
 - __Note :__ 
