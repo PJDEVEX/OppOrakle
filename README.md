@@ -54,7 +54,7 @@ Creating User Centric Design
 |---|----------------------------------------------------------|------------------------------------------------------|
 | 1 | [![gin-gonic/gin](https://img.shields.io/badge/gin--gonic%2Fgin-v1.7.4-green)](https://gin-gonic.com/docs/quickstart/) | Web framework for building Go applications with ease. |
 | 2 | [![golang-jwt/jwt](https://img.shields.io/badge/golang--jwt%2Fjwt--v5-v3.7.3-green)](https://github.com/golang-jwt/jwt) | JSON Web Token (JWT) implementation in Go.            |
-| 3 | [![joho/godotenv](https://img.shields.io/badge/joho%2Fgodotenv-v1.3.0-green)](https://github.com/joho/godotenv) | Load environment variables from a .env file.           |
+| 3 | [![joho/godotenv](https://img.shields.io/badge/joho%2Fgodotenv-v1.5.1-green)](https://github.com/joho/godotenv) | Load environment variables from a .env file.           |
 | 4 | [![golang.org/x/crypto](https://img.shields.io/badge/golang.org%2Fx%2Fcrypto-v0.0.0-9cf)](https://pkg.go.dev/golang.org/x/crypto#section-readme) | Cryptographic primitives for Go.                      |
 | 5 | [![go-gorm/postgres](https://img.shields.io/badge/go--gorm%2Fpostgres-v1.11.0-green)](https://github.com/go-gorm/postgres) | PostgreSQL driver for GORM, an ORM for Go.           |
 | 6 | [![gorm.io/gorm](https://img.shields.io/badge/gorm.io%2Fgorm-v1.23.8-green)](https://gorm.io/) | Feature-rich ORM for Go.                              |
