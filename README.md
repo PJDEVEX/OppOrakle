@@ -109,42 +109,59 @@ Creating User Centric Design
 #### Initial Configarations working fine
 
 <details>
-  <summary>Click to view image</summary>
+  <summary>Initial setup works</summary>
   <img src="https://res.cloudinary.com/pjdevex/image/upload/v1703972542/oppOrakle/devServerUp_brdjme.png" alt="Initial setup works">
 </details>
 
 #### Automigration of database works fine
 
 <details>
-  <summary>Click to view image</summary>
+  <summary>Automigration of database</summary>
   <img src="https://res.cloudinary.com/pjdevex/image/upload/v1703973068/oppOrakle/automigrationsWorks_b0krl4.png" alt="Automigration of database works fine">
 </details>
 
 #### CRUD operation
 
-##### Application - AddApplication
+##### Application - AddApplication - static data
 <details>
-  <summary>Click to view image</summary>
+  <summary>Application - postApplicationPostman</summary>
   <img src="https://res.cloudinary.com/pjdevex/image/upload/v1703985108/oppOrakle/postApplicationPostman_j46bv1.jpg" alt="Application - postApplicationPostman">
 </details>
 
 <details>
-  <summary>Click to view image</summary>
+  <summary>Application - postApplicationView-localhost</summary>
   <img src="https://res.cloudinary.com/pjdevex/image/upload/v1703985108/oppOrakle/postApplicationView_jjaidd.jpg" alt="Application - postApplicationView-localhost">
 </details>
 
 <details>
-  <summary>Click to view image</summary>
+  <summary>Application - postApplicationDataPlus</summary>
   <img src="https://res.cloudinary.com/pjdevex/image/upload/v1703985661/oppOrakle/postApplicationDataPlusView_hkuwsy.jpg" alt="Application - postApplicationDataPlusView">
 </details>
 
+##### Application - AddApplication - dynamic data
+<details>
+  <summary>AddAppDynamicData-postman</summary>
+  <img src="https://res.cloudinary.com/pjdevex/image/upload/v1703989729/oppOrakle/AddAppDynamicData-postman_zjh1o6.jpg" alt="AddAppDynamicData-postman">
+</details>
+
+<details>
+  <summary>AddAppDynamicData-dataPlus</summary>
+  <img src="https://res.cloudinary.com/pjdevex/image/upload/v1703989729/oppOrakle/AddAppDynamicData-dataPlus_phaza7.jpg" alt="AddAppDynamicData-dataPlus">
+</details>
+
+<details>
+  <summary>AddAppDynamicData-localhost</summary>
+  <img src="https://res.cloudinary.com/pjdevex/image/upload/v1703989729/oppOrakle/AddAppDynamicData-localhost_m9cs8v.jpg" alt="AddAppDynamicData-localhost">
+</details>
+
+
 ##### Application - ListApplication
 <details>
-  <summary>Click to view image</summary>
+  <summary>Application - ApplicationList-localhost</summary>
   <img src="https://res.cloudinary.com/pjdevex/image/upload/v1703980325/oppOrakle/getApplicationList_eiq9cy.jpg" alt="Application - ApplicationList-localhost">
 </details>
 <details>
-  <summary>Click to view image</summary>
+  <summary>Application - ApplicationList-postman</summary>
   <img src="https://res.cloudinary.com/pjdevex/image/upload/v1703980325/oppOrakle/getApplicationListPostman_sihc5b.jpg" alt="Application - ApplicationList-postman">
 </details>
 
