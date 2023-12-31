@@ -3,6 +3,7 @@ package main
 import (
 	"os"
 
+	"github.com/PJDEVEX/OppOrakle/controllers"
 	"github.com/PJDEVEX/OppOrakle/initializers"
 	"github.com/gin-gonic/gin"
 )
@@ -16,12 +17,11 @@ func init() {
 func main() {
 	// Gin router
 	r := gin.Default()
+
 	// Route paths
-	r.GET("/", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
+	r.GET("/applications/", controllers.ListApplication)
+	r.POST("/applications/", controllers.AddApplication)
+
 	// Set local port
 	r.Run(":" + os.Getenv("PORT"))
 }

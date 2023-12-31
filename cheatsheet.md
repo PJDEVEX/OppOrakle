@@ -249,13 +249,63 @@ __Note :__ for table and coloumns use `SnakeCase`
 
 ### [CRUD](https://gorm.io/docs/models.html)
 
-#### Create Contact
+#### Create Application
 
 1. `mkdir controllers`
-2. `contactControllers.go`
+2. `applicationController.go`
 
+    ```go
+        package controllers
 
+        import (
+            "time"
+
+            "github.com/PJDEVEX/OppOrakle/initializers"
+            "github.com/PJDEVEX/OppOrakle/models"
+            "github.com/gin-gonic/gin"
+        )
+
+        // POST application
+        func AddApplication(c *gin.Context) {
+            // Sample for testing
+            application := models.ApplicationModel{
+                Title:           "Software Engineer",
+                Company:         "Example Corp",
+                Source:          "LinkedIn",
+                Location:        "New York",
+                WorkArrangement: "Remote",
+                AdvertPdf:       "https://example.com/job_ad.pdf",
+                TechStack:       "Go, React, PostgreSQL",
+                Softskills:      "Communication, Teamwork",
+                Recruiter:       "John Doe",
+                HiringManager:   "Jane Smith",
+                DatePosted:      time.Now(),
+                Deadline:        time.Now().AddDate(0, 0, 14), // Two weeks from now
+                AppliedDate:     time.Now().AddDate(0, 0, -7), // One week ago
+                ResponseType:    "Pending",
+                ResponseDate:    "",
+                TimeElapsed:     7 * 24 * time.Hour, // One week in duration
+                Note:            "Great potential candidate",
+            }
+
+            // Create data in DB
+            result := initializers.DB.Create(&application)
+
+            // Error handling
+            if result.Error != nil {
+                c.Status(400)
+                return
+            }
+
+            // Confirm the creation
+            c.JSON(201, gin.H{
+                "application": application,
+            })
+
+        }
     ```
+
+
 
 3. Use postman to test
  
@@ -263,31 +313,43 @@ __Note :__ for table and coloumns use `SnakeCase`
 - delete test page details
 
     ```go
-        r.POST("/posts", controllers.ContactCreate)
+        r.POST("/posts", controllers.AddApplication)
     ```
 
-#### Get Contact List
+#### Get Application List
 
-1. update contactController.go
+1. update applicationController.go
 
 
 
     ```go
 
-        // ContactList returns a list of contacts
-        func ContactList(C *gin.Context) {
-            // Fetch the list of contacts from the database
-            var contacts []models.Contact
-            if err := initializers.DB.Find(&contacts).Error; err != nil {
-                C.JSON(500, gin.H{"error": err.Error()})
-                return
-            }
+        package main
 
-            // Return the list of contacts
-            C.JSON(200, gin.H{
-                "contacts": contacts,
-            })
+        import (
+            "os"
+
+            "github.com/PJDEVEX/OppOrakle/controllers"
+            "github.com/PJDEVEX/OppOrakle/initializers"
+            "github.com/gin-gonic/gin"
+        )
+
+        // Initialize key comp before the main
+        func init() {
+            initializers.LoadEnvVarialbles()
+            initializers.ConnectToDB()
         }
+
+        func main() {
+            // Gin router
+            r := gin.Default()
+            // Route paths
+            r.GET("/applications/", controllers.ApplicationLIst)
+
+            // Set local port
+            r.Run(":" + os.Getenv("PORT"))
+        }
+
         
     ```
 
