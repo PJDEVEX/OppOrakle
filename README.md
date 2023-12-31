@@ -154,8 +154,25 @@ Creating User Centric Design
   <img src="https://res.cloudinary.com/pjdevex/image/upload/v1703989729/oppOrakle/AddAppDynamicData-localhost_m9cs8v.jpg" alt="AddAppDynamicData-localhost">
 </details>
 
+#### Refactorting - Separation of concerns
+<details>
+  <summary>Refactorting-SeparationOfConcerns-postman</summary>
+  <img src="https://res.cloudinary.com/pjdevex/image/upload/v1704001568/oppOrakle/Refactorting-SeparationOfConcerns-postman_kcodpm.jpg" alt="Refactoring - Separation of Concerns in Postman">
+</details>
+
+<details>
+  <summary>Refactorting-SeparationOfConcerns-TablePlus</summary>
+  <img src="https://res.cloudinary.com/pjdevex/image/upload/v1704001317/oppOrakle/Refactorting-SeparationOfConcerns-TablePlus_bix2bw.jpg" alt="Refactoring - Separation of Concerns in TablePlus">
+</details>
+
+<details>
+  <summary>Refactorting-SeparationOfConcerns-localhost</summary>
+  <img src="https://res.cloudinary.com/pjdevex/image/upload/v1704000889/oppOrakle/Refactorting-SeparationOfConcerns-localhost_onzew4.png" alt="Refactoring - Separation of Concerns on localhost">
+</details>
+
 
 ##### Application - ListApplication
+
 <details>
   <summary>Application - ApplicationList-localhost</summary>
   <img src="https://res.cloudinary.com/pjdevex/image/upload/v1703980325/oppOrakle/getApplicationList_eiq9cy.jpg" alt="Application - ApplicationList-localhost">

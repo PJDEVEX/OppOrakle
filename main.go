@@ -5,6 +5,7 @@ import (
 
 	"github.com/PJDEVEX/OppOrakle/controllers"
 	"github.com/PJDEVEX/OppOrakle/initializers"
+	"github.com/PJDEVEX/OppOrakle/services"
 	"github.com/gin-gonic/gin"
 )
 
@@ -18,9 +19,12 @@ func main() {
 	// Gin router
 	r := gin.Default()
 
+	applicationService := services.NewApplicationService()
+	applicationController := controllers.NewApplicationController(applicationService)
+
 	// Route paths
-	r.GET("/applications/", controllers.ListApplication)
-	r.POST("/applications/", controllers.AddApplication)
+	r.POST("/applications/", applicationController.AddApplication)
+	r.GET("/applications/", applicationController.ListApplications)
 
 	// Set local port
 	r.Run(":" + os.Getenv("PORT"))

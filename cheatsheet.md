@@ -364,7 +364,7 @@ __Note :__ for table and coloumns use `SnakeCase`
     ```
 
 #### Refactorting
-#### Refactorting - use DYNAMIC data
+##### Refactorting - use DYNAMIC data
 
 1. Update applicationController.go
 
@@ -441,6 +441,10 @@ __Note :__ for table and coloumns use `SnakeCase`
     }
 ```
 
+⛔⛔⛔⛔⛔⛔⛔⛔⛔
+<p style="color: red; font-weight: bold ">Refactoring for modularity, scalability, maintenance and separation of concerns</p>
+
+#### Refactorting - Separation of concerns
 
 
 #### Get Contact Details
