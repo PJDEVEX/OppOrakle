@@ -59,6 +59,13 @@ Creating User Centric Design
 | 5 | [![go-gorm/postgres](https://img.shields.io/badge/go--gorm%2Fpostgres-v1.11.0-green)](https://github.com/go-gorm/postgres) | PostgreSQL driver for GORM, an ORM for Go.           |
 | 6 | [![gorm.io/gorm](https://img.shields.io/badge/gorm.io%2Fgorm-v1.23.8-green)](https://gorm.io/) | Feature-rich ORM for Go.                              |
 | 7 | [![githubnemo/compiledaemon](https://img.shields.io/badge/githubnemo%2Fcompiledaemon-v1.2.1-blue)](https://pkg.go.dev/github.com/githubnemo/compiledaemon/v2) | Watches .go files and invokes go build if a file changed. |
+| 8 | [![aws-sdk-go](https://img.shields.io/badge/aws--sdk--go-v1.49.13-brightorange?color=%23FF9900)](https://github.com/aws/aws-sdk-go/releases/tag/v1.49.13) | Official AWS SDK for the Go programming language.  |
+
+**Change Log:**
+- Include your log entries here.
+ | | |
+
+
 
 
 ## API Endpoints
@@ -184,4 +191,6 @@ Creating User Centric Design
 
 ## Reference
 1. [Understanding the Five Planes of UX](https://bootcamp.uxdesign.cc/demystifying-the-ux-process-24e5b10e77b8)
+2. [aws s3](https://github.com/brightfame/ssh-iam)
+3. [File Uploads in Go/Gin (AWS S3 uploads and save to disk)](https://www.youtube.com/watch?v=ssLcGwHv7Hc)
 
