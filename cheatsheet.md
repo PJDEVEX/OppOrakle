@@ -483,6 +483,131 @@ __Note :__ for table and coloumns use `SnakeCase`
         r.GET("/contacts/:id". controller.ContactDetails)
     ```
 
+#### Data Validation - 
+
+1. `models/applicationModel.go`
+
+    ```go
+        // ApplicationModel represents a Application entity with GORM support.
+        type ApplicationModel struct {
+            gorm.Model
+            Title           string        `gorm:"column:title;not null;varchar(100)" json:"title"`
+            Company         string        `gorm:"column:company;not null; varchar(100)" json:"company"`
+            Source          string        `gorm:"column:source; varchar(500)" json;:"source"`
+            Location        string        `gorm:"column:location; varchar(100)" json:"location"`
+            WorkArrangement string        `gorm:"column:work_arrangement; varchar(100)" json:"work_arrangement"`
+            AdvertPdf       string        `gorm:"column:advert_pdf" json:"advert_pdf"`
+            TechStack       string        `gorm:"column:tech_stack; varchar(500)" json:"tech_stack"`
+            Softskills      string        `gorm:"column:softskills; varchar(500)" json:"softskills"`
+            Recruiter       string        `gorm:"column:recruiter; varchar(100)" json:"recruiter"`
+            HiringManager   string        `gorm:"column:hiring_manager; varchar(100)" json:"hiring_manager"`
+            DatePosted      time.Time     `gorm:"column:date_posted; not null" json:"date_posted"`
+            Deadline        time.Time     `gorm:"column:deadline" json:"deadline"`
+            AppliedDate     time.Time     `gorm:"column:applied_date" json:"applied_date"`
+            ResponseType    string        `gorm:"column:response_type; varchar(100)" json:"response_type"`
+            ResponseDate    string        `gorm:"column:response_date" json:"response_date"`
+            TimeElapsed     time.Duration `gorm:"column:time_elapsed" json:"time_elapsed"`
+            Note            string        `gorm:"column:note; varchar(500)" json:"note"`
+            }
+    ```
+
+2. `controllers/applicationController.go`
+
+```go
+        // POST application
+        func (c *ApplicationController) AddApplication(ctx *gin.Context) {
+            // Bind JSON input
+            var input models.ApplicationModel
+            // Error handling
+            if err := ctx.ShouldBindJSON(&input); err != nil {
+                ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+                return
+            }
+
+            // Validate title
+            if input.Title == "" {
+                ctx.JSON(http.StatusBadRequest, gin.H{"Error": "Title is required!"})
+                return
+            } else if len(input.Title) > 100 {
+                ctx.JSON(http.StatusBadRequest, gin.H{"error": "Title exceeds 100 characters limit!"})
+            }
+
+            // Validate Company
+            if input.Company == "" {
+                ctx.JSON(http.StatusBadRequest, gin.H{"error": "Company is required!"})
+                return
+            } else if len(input.Company) > 100 {
+                ctx.JSON(http.StatusBadRequest, gin.H{"error": "Company name exceeds 100 characters limit!"})
+                return
+            }
+
+            // Validate Source
+            if len(input.Source) > 500 {
+                ctx.JSON(http.StatusBadRequest, gin.H{"error": "Source exceeds 500 characters limit!"})
+                return
+            }
+
+            // Validate Location
+            if len(input.Location) > 100 {
+                ctx.JSON(http.StatusBadRequest, gin.H{"error": "Location exceeds 100 characters limit!"})
+                return
+            }
+
+            // Validate WorkArrangement
+            if len(input.WorkArrangement) > 100 {
+                ctx.JSON(http.StatusBadRequest, gin.H{"error": "WorkArrangement exceeds 100 characters limit!"})
+                return
+            }
+
+            // Validate TechStack
+            if len(input.TechStack) > 500 {
+                ctx.JSON(http.StatusBadRequest, gin.H{"error": "TechStack exceeds 500 characters limit!"})
+                return
+            }
+
+            // Validate Softskills
+            if len(input.Softskills) > 500 {
+                ctx.JSON(http.StatusBadRequest, gin.H{"error": "Softskills exceeds 500 characters limit!"})
+                return
+            }
+
+            // Validate Recruiter
+            if len(input.Recruiter) > 100 {
+                ctx.JSON(http.StatusBadRequest, gin.H{"error": "Recruiter exceeds 100 characters limit!"})
+                return
+
+            }
+
+            // Validate HiringManager
+            if len(input.HiringManager) > 100 {
+                ctx.JSON(http.StatusBadRequest, gin.H{"error": "HiringManager exceeds 100 characters limit!"})
+                return
+            }
+
+            // Validate ResponseType
+            if len(input.ResponseType) > 100 {
+                ctx.JSON(http.StatusBadRequest, gin.H{"error": "ResponseType exceeds 100 characters limit!"})
+                return
+            }
+
+            // Validate Note
+            if len(input.Note) > 500 {
+                ctx.JSON(http.StatusBadRequest, gin.H{"error": "Note exceeds 500 characters limit!"})
+                return
+            }
+
+            // Add application
+            application, err := c.applicationService.AddApplication(&input)
+            if err != nil {
+                ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+                return
+            }
+
+            // Respond with created application
+            ctx.JSON(http.StatusCreated, gin.H{"application": application})
+        }
+
+```
 
 
 #### Update
