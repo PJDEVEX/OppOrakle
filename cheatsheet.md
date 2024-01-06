@@ -71,7 +71,6 @@ __Note :__ better to use `port:8000` to avoid conflict with `postgres`
 
 ```go
 package main
-
 import (
     "github.com/joho/godotenv"
     "log"
@@ -608,6 +607,83 @@ __Note :__ for table and coloumns use `SnakeCase`
         }
 
 ```
+
+##### Upload pdf file to aws s3 bucket
+
+##### Initial `S3 client` by installing `AWS SDK` and `s3`
+https://docs.aws.amazon.com/sdk-for-go/
+1. Upgrate go version (`from 1.18 to 1.21`) 
+    - Remove Previous go version and extract the archive - use the below instead of what the site has given
+    - `$ rm -rf /usr/local/go && tar -C /usr/local -xzf https://go.dev/dl/go1.21.5.linux-amd64.tar.gz`
+    - Add /usr/local/go/bin to the PATH environment variable
+    - `export PATH=$PATH:/usr/local/go/bin` or `export PATH=$GOROOT/bin:$PATH`
+    - check the go version
+    - '`$ go version`
+
+2. Create `S3 bucket` and `IAM user`
+
+3. Create `utils/s3.go`
+
+    ```go
+    package utils
+
+    import (
+        "context"
+        "errors"
+        "fmt"
+        "log"
+        "os"
+
+        "github.com/aws/aws-sdk-go-v2/config"
+        "github.com/aws/aws-sdk-go-v2/service/s3"
+    )
+
+    var (
+        AWS_REGION            = os.Getenv("AWS_REGION")
+        AWS_ACCESS_KEY_ID     = os.Getenv("AWS_ACCESS_KEY_ID")
+        AWS_SECRET_ACCESS_KEY = os.Getenv("AWS_SECRET_ACCESS_KEY")
+        AWS_BUCKETNAME        = os.Getenv("AWS_BUCKETNAME")
+    )
+
+    // Config s3 client
+    func CreateS3Client() (*s3.Client, error) {
+        // Load aws config with region
+        cfg, err := config.LoadDefaultConfig(context.TODO(), config.WithRegion(AWS_REGION))
+        if err != nil {
+            return nil, fmt.Errorf("failed to load AWS config: %v", err)
+        }
+
+        // Crate a client with accelatetion enabled
+        client := s3.NewFromConfig(cfg, func(o *s3.Options) {
+            o.UseAccelerate = true
+        })
+        if client == nil {
+            return nil, errors.New("S3 client is nil")
+        }
+
+        // Confirm functioning of S3 client
+        _, err = client.ListBuckets(context.TODO(), &s3.ListBucketsInput{})
+        if err != nil {
+            return nil, fmt.Errorf("failed to create S3 client: %v", err)
+        }
+
+        log.Println("S3 client created successfully")
+        return client, nil
+    }
+
+    ```
+
+3. modify `main.go` to call `s3 client`
+
+    ```go
+        // Call s3 client from utils package
+        s3Client, err := utils.CreateS3Client()
+        if err != nil {
+            log.Fatalf("Error crateing S3 client: v%", err)
+        }
+        log.Println("S3 client created successfully:", s3Client)
+
+    ```
 
 
 #### Update
