@@ -14,7 +14,7 @@ type ApplicationModel struct {
 	Source          string    `gorm:"column:source; varchar(500)" json:"source"`
 	Location        string    `gorm:"column:location; varchar(100)" json:"location"`
 	WorkArrangement string    `gorm:"column:work_arrangement; varchar(100)" json:"work_arrangement"`
-	AdvertPdf       string    `gorm:"column:advert_pdf" json:"advert_pdf"`
+	AdvertPdfUrl    string    `gorm:"column:advert_pdf_url" json:"advert_pdf_url"`
 	TechStack       string    `gorm:"column:tech_stack; varchar(500)" json:"tech_stack"`
 	Softskills      string    `gorm:"column:softskills; varchar(500)" json:"softskills"`
 	Recruiter       string    `gorm:"column:recruiter; varchar(100)" json:"recruiter"`

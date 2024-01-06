@@ -21,7 +21,7 @@ func (s *ApplicationService) AddApplication(input *models.ApplicationModel) (*mo
 		Source:          input.Source,
 		Location:        input.Location,
 		WorkArrangement: input.WorkArrangement,
-		AdvertPdf:       input.AdvertPdf,
+		AdvertPdfUrl:    input.AdvertPdfUrl,
 		TechStack:       input.TechStack,
 		Softskills:      input.Softskills,
 		Recruiter:       input.Recruiter,
